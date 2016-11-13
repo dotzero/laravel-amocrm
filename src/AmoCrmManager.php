@@ -75,9 +75,9 @@ class AmoCrmManager
     {
         if (!$this->client instanceof Client) {
             $this->client = new Client(
-                $this->config['amocrm.domain'],
-                $this->config['amocrm.login'],
-                $this->config['amocrm.hash']
+                $this->config->get('amocrm.domain'),
+                $this->config->get('amocrm.login'),
+                $this->config->get('amocrm.hash')
             );
         }
 
@@ -104,10 +104,10 @@ class AmoCrmManager
         $client = $this->getClient();
 
         return new B2BFamily($client,
-            $this->config['amocrm.b2bfamily.appkey'],
-            $this->config['amocrm.b2bfamily.secret'],
-            $this->config['amocrm.b2bfamily.email'],
-            $this->config['amocrm.b2bfamily.password']
+            $this->config->get('amocrm.b2bfamily.appkey'),
+            $this->config->get('amocrm.b2bfamily.secret'),
+            $this->config->get('amocrm.b2bfamily.email'),
+            $this->config->get('amocrm.b2bfamily.password')
         );
     }
 
