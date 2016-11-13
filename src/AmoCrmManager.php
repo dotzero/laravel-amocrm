@@ -12,6 +12,8 @@
 namespace Dotzero\LaravelAmoCrm;
 
 use AmoCRM\Client;
+use AmoCRM\Helpers\Fields;
+use AmoCRM\Helpers\B2BFamily;
 use Illuminate\Contracts\Config\Repository;
 
 /**
@@ -80,6 +82,33 @@ class AmoCrmManager
         }
 
         return $this->client;
+    }
+
+    /**
+     * Get the AmoCRM Fields helper instance.
+     *
+     * @return \AmoCRM\Helpers\Fields
+     */
+    public function getFields()
+    {
+        return new Fields();
+    }
+
+    /**
+     * Get the AmoCRM B2BFamily helper instance.
+     *
+     * @return \AmoCRM\Helpers\B2BFamily
+     */
+    public function getB2BFamily()
+    {
+        $client = $this->getClient();
+
+        return new B2BFamily($client,
+            $this->config['amocrm.b2bfamily.appkey'],
+            $this->config['amocrm.b2bfamily.secret'],
+            $this->config['amocrm.b2bfamily.email'],
+            $this->config['amocrm.b2bfamily.password']
+        );
     }
 
     /**

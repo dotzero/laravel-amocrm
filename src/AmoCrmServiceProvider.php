@@ -62,19 +62,15 @@ class AmoCrmServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('amocrm.fields', function (Container $app) {
-            return new Fields();
+            $manager = $app['amocrm'];
+
+            return $manager->getFields();
         });
 
         $this->app->singleton('amocrm.b2bfamily', function (Container $app) {
-            $client = $app['amocrm'];
+            $manager = $app['amocrm'];
 
-            return new B2BFamily(
-                $client,
-                config('amocrm.b2bfamily.appkey'),
-                config('amocrm.b2bfamily.secret'),
-                config('amocrm.b2bfamily.email'),
-                config('amocrm.b2bfamily.password')
-            );
+            return $manager->getB2BFamily();
         });
     }
 
