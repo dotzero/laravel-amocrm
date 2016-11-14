@@ -2,8 +2,7 @@
 
 [![Build Status](https://travis-ci.org/dotzero/laravel-amocrm.svg?branch=master)](https://travis-ci.org/dotzero/laravel-amocrm)
 
-**Laravel AmoCrm** это сервис провайдер и фасад для **Laravel 5 Framework** реализующие клиент для работы с API amoCRM
-используя библиотеку [amocrm-php](https://github.com/dotzero/amocrm-php).
+**Laravel AmoCrm** это ServiceProvider и Facade для **Laravel 5** предоставляющие интеграцию с API amoCRM используя библиотеку [amocrm-php](https://github.com/dotzero/amocrm-php).
 
 ## Установка
 
@@ -13,54 +12,81 @@
 $ composer require dotzero/laravel-amocrm
 ```
 
-Добавить сервис провайдер в секцию `providers` файла `config/app.php`.
-
-```php
-Dotzero\LaravelAmoCrm\AmoCrmServiceProvider::class
-```
-
-Если вы хотите использовать [facade](http://laravel.com/docs/facades). То в секцию `aliases` файла `config/app.php` добавить.
-
-```php
-'AmoCrm' => Dotzero\LaravelAmoCrm\Facades\AmoCrm::class
-```
-
 ## Настройка
 
-Laravel AmoCrm требует указания параметров подключения к API amoCRM. Для начала необходимо опубликовать файл конфигурации используя:
+После установки необходимо добавить `AmoCrmServiceProvider` в секцию `providers` файла `config/app.php`.
+
+```php
+'providers' => [
+    // ...
+    Dotzero\LaravelAmoCrm\AmoCrmServiceProvider::class,
+],
+```
+
+Для использования [Facade](http://laravel.com/docs/facades),  необходимо добавить `AmoCrm` в секцию `aliases` файла `config/app.php`.
+
+```php
+'aliases' => [
+    // ...
+    'AmoCrm' => Dotzero\LaravelAmoCrm\Facades\AmoCrm::class,
+],
+```
+
+Laravel AmoCrm требует указания параметров подключения к API amoCRM. Указать их можно в файле конфигурации. Для этого необходимо опубликовать файл конфигурации.
 
 ```bash
 $ php artisan vendor:publish
 ```
 
-Эта команда создаст файл `config/amocrm.php` в котором можно будет указать эти параметры. Или использовать переменные окружения используя файл `.env`.
+Эта команда создаст файл `config/amocrm.php` в котором можно будет указать эти параметры. Кроме того можно использовать переменные окружения используя файл `.env`.
 
 ## Использование
 
 ```php
-use Dotzero\LaravelAmoCrm\AmoCrmServiceManager;
-use Illuminate\Support\Facades\App;
+use Dotzero\LaravelAmoCrm\AmoCrmManager;
 
-class Foo
-{
-    protected $amocrm;
+Route::get('/', function (AmoCrmManager $amocrm) {
+    try {
 
-    public function __construct(AmoCrmServiceManager $amocrm)
-    {
-        $this->amocrm = $amocrm;
+        /** @var \AmoCRM\Client $client */
+        $client = $amocrm->getClient();
+        $account = $client->account;
+
+        // или
+
+        /** @var \AmoCRM\Models\Account $account */
+        $account = $amocrm->account;
+
+        dd($account->apiCurrent());
+
+    } catch (\Exception $e) {
+        abort(400, $e->getMessage());
     }
-
-    public function bar()
-    {
-        $account = $this->amocrm->account;
-
-        // Вывод информации об аккаунте
-        print_r($account->apiCurrent());
-    }
-}
-
-App::make('Foo')->bar();
+});
 ```
+
+Если вы предопочитаете использовать Facade, то следующий пример показывает как это можно сделать.
+
+```php
+use Dotzero\LaravelAmoCrm\Facades\AmoCrm;
+
+Route::get('/', function () {
+
+    /** @var \AmoCRM\Client $client */
+    $client = AmoCrm::getClient();
+
+    /** @var \AmoCRM\Helpers\Fields $fields */
+    $fields = AmoCrm::getFields();
+
+    /** @var \AmoCRM\Helpers\getB2BFamily $fields */
+    $b2bfamily = AmoCrm::getB2BFamily();
+
+});
+```
+
+## Документация
+
+Смотреть документацию к библиотеке [amocrm-php](https://github.com/dotzero/amocrm-php).
 
 ## Лицензия
 
