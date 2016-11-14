@@ -1,6 +1,8 @@
 # Laravel AmoCrm
 
 [![Build Status](https://travis-ci.org/dotzero/laravel-amocrm.svg?branch=master)](https://travis-ci.org/dotzero/laravel-amocrm)
+[![Latest Stable Version](https://poser.pugx.org/dotzero/laravel-amocrm/version)](https://packagist.org/packages/dotzero/laravel-amocrm)
+[![License](https://poser.pugx.org/dotzero/laravel-amocrm/license)](https://packagist.org/packages/dotzero/laravel-amocrm)
 
 **Laravel AmoCrm** это ServiceProvider и Facade для **Laravel 5** предоставляющие интеграцию с API amoCRM используя библиотеку [amocrm-php](https://github.com/dotzero/amocrm-php).
 
