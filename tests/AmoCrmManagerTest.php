@@ -52,6 +52,26 @@ class AmoCrmManagerTest extends AbstractTestBenchTestCase
         $this->assertInstanceOf(Client::class, $return);
     }
 
+    /**
+     * @dataProvider modelsProvider
+     */
+    public function testGetModel($name, $expected)
+    {
+        $this->manager->getConfig()->shouldReceive('get')->once()
+            ->with('amocrm.domain')->andReturn('example');
+
+        $this->manager->getConfig()->shouldReceive('get')->once()
+            ->with('amocrm.login')->andReturn('login@example.com');
+
+        $this->manager->getConfig()->shouldReceive('get')->once()
+            ->with('amocrm.hash')->andReturn('d56b699830e77ba53855679cb1d252da');
+
+        $model = $this->manager->{$name};
+        $this->assertInstanceOf($expected, $model);
+        $this->assertInstanceOf('\AmoCRM\Models\ModelInterface', $model);
+        $this->assertSame($expected, (string)$model);
+    }
+
     public function testGetFields()
     {
         $return = $this->manager->getFields();
@@ -93,5 +113,30 @@ class AmoCrmManagerTest extends AbstractTestBenchTestCase
         $manager = new AmoCrmManager($repository);
 
         return $manager;
+    }
+
+    public function modelsProvider()
+    {
+        return [
+            // model name, expected
+            ['account', 'AmoCRM\Models\Account'],
+            ['call', 'AmoCRM\Models\Call'],
+            ['catalog', 'AmoCRM\Models\Catalog'],
+            ['catalog_element', 'AmoCRM\Models\CatalogElement'],
+            ['company', 'AmoCRM\Models\Company'],
+            ['contact', 'AmoCRM\Models\Contact'],
+            ['customer', 'AmoCRM\Models\Customer'],
+            ['customers_periods', 'AmoCRM\Models\CustomersPeriods'],
+            ['custom_field', 'AmoCRM\Models\CustomField'],
+            ['lead', 'AmoCRM\Models\Lead'],
+            ['links', 'AmoCRM\Models\Links'],
+            ['note', 'AmoCRM\Models\Note'],
+            ['pipelines', 'AmoCRM\Models\Pipelines'],
+            ['task', 'AmoCRM\Models\Task'],
+            ['transaction', 'AmoCRM\Models\Transaction'],
+            ['unsorted', 'AmoCRM\Models\Unsorted'],
+            ['webhooks', 'AmoCRM\Models\WebHooks'],
+            ['widgets', 'AmoCRM\Models\Widgets'],
+        ];
     }
 }

@@ -24,11 +24,23 @@ use Illuminate\Contracts\Config\Repository;
  * @link http://www.dotzero.ru/
  * @link https://github.com/dotzero/laravel-amocrm
  * @property \AmoCRM\Models\Account $account
+ * @property \AmoCRM\Models\Call $call
+ * @property \AmoCRM\Models\Catalog $catalog
+ * @property \AmoCRM\Models\CatalogElement $catalog_element
  * @property \AmoCRM\Models\Company $company
  * @property \AmoCRM\Models\Contact $contact
+ * @property \AmoCRM\Models\Customer $customer
+ * @property \AmoCRM\Models\CustomersPeriods $customers_periods
+ * @property \AmoCRM\Models\CustomField $custom_field
  * @property \AmoCRM\Models\Lead $lead
+ * @property \AmoCRM\Models\Links $links
  * @property \AmoCRM\Models\Note $note
+ * @property \AmoCRM\Models\Pipelines $pipelines
  * @property \AmoCRM\Models\Task $task
+ * @property \AmoCRM\Models\Transaction $transaction
+ * @property \AmoCRM\Models\Unsorted $unsorted
+ * @property \AmoCRM\Models\WebHooks $webhooks
+ * @property \AmoCRM\Models\Widgets $widgets
  */
 class AmoCrmManager
 {
@@ -115,7 +127,7 @@ class AmoCrmManager
      * Dynamically pass methods to AmoCRM client instance.
      *
      * @param string $property
-     * @return mixed
+     * @return \AmoCRM\Models\ModelInterface
      */
     public function __get($property)
     {

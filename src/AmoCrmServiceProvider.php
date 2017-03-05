@@ -11,8 +11,6 @@
 
 namespace Dotzero\LaravelAmoCrm;
 
-use AmoCRM\Helpers\Fields;
-use AmoCRM\Helpers\B2BFamily;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Container\Container;
 
