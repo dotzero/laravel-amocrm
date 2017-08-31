@@ -28,5 +28,15 @@
         "psr-4": {
             "Dotzero\\Tests\\LaravelAmoCrm\\": "tests/"
         }
-    }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dotzero\\LaravelAmoCrm\\AmoCrmServiceProvider"
+            ],
+            "aliases": {
+                "AmoCrm": "Dotzero\\LaravelAmoCrm\\Facades\\AmoCrm"
+            }
+        }
+    },
 }
