@@ -20,8 +20,7 @@ $ composer require dotzero/laravel-amocrm
 
 Если вы используете Laravel 5.5 и выше, регистрировать `providers` и `aliases` не нужно.
 
-Для Laravel 5.4.* и ниже:
-После установки необходимо добавить `AmoCrmServiceProvider` в секцию `providers` файла `config/app.php`.
+Для Laravel 5.4.* и ниже: после установки необходимо добавить `AmoCrmServiceProvider` в секцию `providers` файла `config/app.php`.
 
 ```php
 'providers' => [
