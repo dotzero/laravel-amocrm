@@ -135,7 +135,7 @@ class AmoCrmManagerTest extends AbstractTestBenchTestCase
             ['task', 'AmoCRM\Models\Task'],
             ['transaction', 'AmoCRM\Models\Transaction'],
             ['unsorted', 'AmoCRM\Models\Unsorted'],
-            ['web_hooks', 'AmoCRM\Models\WebHooks'],
+            ['webhooks', 'AmoCRM\Models\Webhooks'],
             ['widgets', 'AmoCRM\Models\Widgets'],
         ];
     }
