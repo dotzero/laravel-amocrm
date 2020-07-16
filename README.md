@@ -6,7 +6,7 @@
 [![Code Coverage](https://scrutinizer-ci.com/g/dotzero/laravel-amocrm/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/dotzero/laravel-amocrm/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dotzero/laravel-amocrm/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dotzero/laravel-amocrm/?branch=master)
 
-**Laravel AmoCrm** это ServiceProvider и Facade для **Laravel 5** предоставляющие интеграцию с API amoCRM используя библиотеку [amocrm-php](https://github.com/dotzero/amocrm-php).
+**Laravel AmoCrm** это ServiceProvider и Facade для **Laravel 5 и выше** предоставляющие интеграцию с API amoCRM используя библиотеку [amocrm-php](https://github.com/dotzero/amocrm-php).
 
 ## Установка
 
